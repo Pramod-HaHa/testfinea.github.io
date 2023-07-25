@@ -1,30 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Location Sharing Form</title>
+    <title>Get Precise Location</title>
+    <script>
+        // JavaScript function to get the user's location
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        // JavaScript function to display the user's location
+        function showPosition(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+            document.getElementById("latitude").value = latitude;
+            document.getElementById("longitude").value = longitude;
+        }
+    </script>
 </head>
 <body>
-    <h1>Share Your Location</h1>
-    <form action="save_location.php" method="post">
+    <h1>Get Precise Location</h1>
+    <form action="send_email.php" method="post">
         <label for="latitude">Latitude:</label>
-        <input type="text" name="latitude" id="latitude" required><br>
+        <input type="text" id="latitude" name="latitude" readonly><br>
 
         <label for="longitude">Longitude:</label>
-        <input type="text" name="longitude" id="longitude" required><br>
+        <input type="text" id="longitude" name="longitude" readonly><br>
 
-        <input type="submit" value="Share Location">
+        <input type="button" value="Get Location" onclick="getLocation()">
+        <input type="submit" value="Send Location">
     </form>
-    <script>
-        // Use JavaScript to get the user's precise location and fill the input fields
-        navigator.geolocation.getCurrentPosition(
-            function(position) {
-                document.getElementById('latitude').value = position.coords.latitude;
-                document.getElementById('longitude').value = position.coords.longitude;
-            },
-            function(error) {
-                console.error(error);
-            }
-        );
-    </script>
 </body>
 </html>

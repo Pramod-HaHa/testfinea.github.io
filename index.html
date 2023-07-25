@@ -1,48 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Get Precise Location</title>
+    <title>Location Sharing Form</title>
 </head>
 <body>
-    <h1>Get Precise Location</h1>
-    <p>Please click the button below to share your precise location.</p>
-    <button onclick="getLocation()">Get Location</button>
+    <h1>Share Your Location</h1>
+    <form action="save_location.php" method="post">
+        <label for="latitude">Latitude:</label>
+        <input type="text" name="latitude" id="latitude" required><br>
 
+        <label for="longitude">Longitude:</label>
+        <input type="text" name="longitude" id="longitude" required><br>
+
+        <input type="submit" value="Share Location">
+    </form>
     <script>
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(saveLocation);
-            } else {
-                alert("Geolocation is not supported by your browser.");
+        // Use JavaScript to get the user's precise location and fill the input fields
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
+                document.getElementById('latitude').value = position.coords.latitude;
+                document.getElementById('longitude').value = position.coords.longitude;
+            },
+            function(error) {
+                console.error(error);
             }
-        }
-
-        function saveLocation(position) {
-            const latitude = position.coords.latitude;
-            const longitude = position.coords.longitude;
-
-            // Create a form to send the location data to the PHP file
-            const form = document.createElement("form");
-            form.method = "post";
-            form.action = "save_location.php";
-
-            // Create input fields to store the latitude and longitude
-            const inputLatitude = document.createElement("input");
-            inputLatitude.type = "hidden";
-            inputLatitude.name = "latitude";
-            inputLatitude.value = latitude;
-            form.appendChild(inputLatitude);
-
-            const inputLongitude = document.createElement("input");
-            inputLongitude.type = "hidden";
-            inputLongitude.name = "longitude";
-            inputLongitude.value = longitude;
-            form.appendChild(inputLongitude);
-
-            // Append the form to the body and submit it
-            document.body.appendChild(form);
-            form.submit();
-        }
+        );
     </script>
 </body>
 </html>

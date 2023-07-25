@@ -1,0 +1,21 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Get the latitude and longitude from the form submission
+    $latitude = $_POST['latitude'];
+    $longitude = $_POST['longitude'];
+
+    // Define the filename and location to save the data
+    $filename = 'location_data.txt';
+    $file_path = __DIR__ . '/' . $filename;
+
+    // Format the data to be saved
+    $data = "Latitude: $latitude\nLongitude: $longitude\n";
+
+    // Save the data to the file
+    if (file_put_contents($file_path, $data, FILE_APPEND | LOCK_EX) !== false) {
+        echo "Location data saved successfully!";
+    } else {
+        echo "Error saving location data.";
+    }
+}
+?>

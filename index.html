@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Get User Location</title>
+    <title>User Cordinate Testing</title>
     <script>
         function getLocation() {
             if (navigator.geolocation) {
@@ -14,14 +14,13 @@
         function showPosition(position) {
             var latitude = position.coords.latitude;
             var longitude = position.coords.longitude;
-            document.getElementById("location-info").innerHTML = "Latitude: " + latitude + "<br>Longitude: " + longitude;
+            document.getElementById("location-info").innerHTML = "Cordinate X: " + latitude + "<br>Cordinate Y: " + longitude;
         }
     </script>
 </head>
 <body>
-    <h1>Get User Location</h1>
-    <button onclick="getLocation()">Get My Location</button>
+    <h1>Cordinate</h1>
+    <button onclick="getLocation()">Cordinate</button>
     <div id="location-info"></div>
 </body>
 </html>
-

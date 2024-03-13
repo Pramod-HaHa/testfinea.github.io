@@ -1,4 +1,4 @@
-// Initialize Firebase (ADD YOUR OWN DATA)
+/// Initialize Firebase (ADD YOUR OWN DATA)
 const firebaseConfig = {
   apiKey: "AIzaSyDhXc8N9sBOCbYM9jmJ847_B6-lO6FW__g",
   authDomain: "location-44d93.firebaseapp.com",
